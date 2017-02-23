@@ -49,8 +49,18 @@ for it in range(int(init_line[1])):
 for it in range(int(init_line[3])):
     cache_map[it] = Cache(it, 0)
     
-    
-
+for video in video_map:
+    for endpoint_id in video.getNrRequestMapping():
+        num_requests = video.getNrRequestMapping()[endpoint_id]
+        for cacheServerID in endpoint_map[endpoint_id].getLatencyMapping():
+            reward = num_requests * (endpoint_map[endpoint_id].getCenterLatency() - endpoint_map[endpoint_id].getLatencyMapping()[cacheServerID] )
+            
+            if cache_map[cacheServerID].getRewardMap[video.getID()] == None:
+                cache_map[cacheServerID].addToRewardMap(video.getID(), reward)
+            else:
+                cache_map[cacheServerID].getRewardMap[video.getID()] += reward
+                
+        
 #nr_cols = int(fileContent[0])
 #nr_rows = int(fileContent[2])
 #
