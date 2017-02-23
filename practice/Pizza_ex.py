@@ -2,8 +2,14 @@
 """
 Created on Thu Feb 23 15:14:29 2017
 
-@author: root
+@author: dom,jantschi,stef
 """
-filname = '/input/small.in'
-with open(fileName, mode='rb') as file: # b is important -> binary
+
+filename = 'input/small.in'
+
+with open(filename, mode='r') as file: # b is important -> binary
     fileContent = file.read()
+file.close()
+
+print(fileContent)
+print("done")
