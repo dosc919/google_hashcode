@@ -17,4 +17,8 @@ class Video:
         return self.nr_request_mapping
         
     def addNrRequestToEnpoint(self, endpoint_id_, nr_requests_):
-        self.nr_request_mapping[endpoint_id_] = nr_requests_
+        if(endpoint_id_ in self.nr_request_mapping):
+            self.nr_request_mapping[endpoint_id_] = self.nr_request_mapping[endpoint_id_] + nr_requests_
+        else:
+            self.nr_request_mapping[endpoint_id_] = nr_requests_
+            

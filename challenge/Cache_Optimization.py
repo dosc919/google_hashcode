@@ -35,19 +35,25 @@ cache_map = {}
 
 for it in range(int(init_line[0])):
     video_map[it] = Video(it, int(video_size_line[it]))
+last_tmp = start_endpoint_line[len(start_endpoint_line) - 1]
+first_video_request_indx = last_tmp + int(fileContent[last_tmp].split(' ')[1]) + 1
+
+for it in range(first_video_request_indx, len(fileContent)):
+    video_tmp, endpoint_tmp, nr_requests_tmp = fileContent[it].split(' ')
+    video_map[int(video_tmp)].addNrRequestToEnpoint(int(endpoint_tmp), int(nr_requests_tmp))
+    
 
 for it in range(int(init_line[1])):
     nr_lat = int(fileContent[start_endpoint_line[it]].split(' ')[1])
     endpoint_map[it] = Endpoint(it, int(fileContent[start_endpoint_line[it]].split(' ')[0]))
-    for it_lat in range((start_endpoint_line[it] + 1), (start_endpoint_line[it] + nr_lat)):
-        cache_id = fileContent[it_lat].split(' ')[1]
-        latency_tmp = fileContent[it_lat].split(' ')[0]
+    for it_lat in range((start_endpoint_line[it] + 1), (start_endpoint_line[it] + nr_lat + 1)):
+        cache_id = int(fileContent[it_lat].split(' ')[1])
+        latency_tmp = int(fileContent[it_lat].split(' ')[0])
         endpoint_map[it].addCacheEndpointLatency(cache_id, latency_tmp)
         
         
-
 for it in range(int(init_line[3])):
-    cache_map[it] = Cache(it, 0)
+    cache_map[it] = Cache(it, int(init_line[4]))
     
 for video in video_map:
     for endpoint_id in video.getNrRequestMapping():
