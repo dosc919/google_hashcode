@@ -2,15 +2,17 @@
 """
 Created on Thu Feb 23 15:14:29 2017
 
-@author: dom,jantschi,stef
+@author: dom,jantschi,marcel,stef
 """
 
 import numpy as np
 
+filename_example = 'input/example.in'
+filename_small = 'input/small.in'
+filename_medium = 'input/medium.in'
+filename_big = 'input/big.in'
 
-filename = 'input/small.in'
-
-with open(filename, mode='r') as file: # b is important -> binary
+with open(filename_small, mode='r') as file: # b is important -> binary
     fileContent = file.read()
 file.close()
 
