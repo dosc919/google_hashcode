@@ -24,12 +24,15 @@ pizza_matrix = np.reshape(pizzaContent, (nr_cols, nr_rows))
 
 
 print ('write file')
-out_path = 'input/output.txt'
+out_path = 'input/output.in'
 fo = open(out_path, "w")
 
-for ind in range(0,np.size(pizza_matrix,0)):
-    fo.write( str(pizza_matrix[ind,:])+ "\n");
+#for ind in range(0,np.size(pizza_matrix,0)):
+#    fo.write( str(pizza_matrix[ind,:])+ "\n");
   # Close file
+fo.write(str(3) + "\n" + str(0) + " " + str(0) + " "+str(2) + " " +
+ str(1) + "\n" + str(0) + " " + str(2)+ " " + str(2)+ " " +
+ str(2) + "\n" + str(0) + " " +str(3) + " " +str(2) + " "+ str(4))
 fo.close()
 
 print("done")
